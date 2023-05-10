@@ -1,12 +1,19 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"recipes/data"
 	"recipes/handlers"
 )
 
 func main() {
-	http.HandleFunc("/", handlers.HomePage)
-	log.Fatal(http.ListenAndServe(":8000", nil))
+	data.FetchAllRecipes()
+	server := http.NewServeMux()
+	style := http.FileServer(http.Dir("frontend/css"))
+	server.Handle("/frontend/css/", http.StripPrefix("/frontend/css/", style))
+	server.HandleFunc("/", handlers.HomePage)
+	fmt.Println(data.AllRecipes)
+	log.Fatal(http.ListenAndServe(":8000", server))
 }

@@ -2,14 +2,14 @@ package data
 
 type Recipe struct {
 	Id          string            `json:"Id"`
-	RecipeName  string            `json:"RecipeName"`
+	RecipeName  string            `json:"Recipe Name"`
 	Source      string            `json:"Source"`
-	PrepTime    string            `json:"PrepTime"`
-	CookTime    string            `json:"CookTime"`
-	ServingSize int               `json:"ServingSize"`
+	PrepTime    string            `json:"Preperation Time"`
+	CookTime    string            `json:"Cook Time"`
+	ServingSize int               `json:"Serving Size"`
 	Ingredients map[string]string `json:"Ingredients"`
 	Directions  map[int]string    `json:"Directions"`
 	Tags        []string          `json:"Tags"`
 }
 
-var ThisVariable Recipe
+var AllRecipes []Recipe
